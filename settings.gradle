@@ -1,0 +1,3 @@
+include ':DayBar'
+include ':app'
+rootProject.name = "DayBarSample"

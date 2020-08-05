@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DayBar">
+        <attr name="textColorSelected" format="reference|color"/>
+        <attr name="android:textColor"/>
+        <attr name="font" format="reference"/>
+    </declare-styleable>
+</resources>

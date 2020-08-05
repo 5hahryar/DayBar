@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_start">20dp</dimen>
+    <dimen name="margin_end">20dp</dimen>
+    <dimen name="dayChipHeight">65dp</dimen>
+    <dimen name="dayChipRadius">50dp</dimen>
+    <dimen name="day_bar_chip_width">0dp</dimen>
+    <dimen name="day_bar_chip_radius">5dp</dimen>
+    <dimen name="day_bar_chip_padding">0dp</dimen>
+    <dimen name="day_bar_chip_marginEnd">2dp</dimen>
+    <dimen name="day_bar_chip_marginStart">2dp</dimen>
+    <dimen name="day_bar_chip_lineSpacingExtra">5dp</dimen>
+    <item name="day_bar_chip_weight" type="dimen" format="float">0.9</item>
+</resources>

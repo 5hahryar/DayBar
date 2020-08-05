@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="dayBarChip" parent="Widget.Button.Toggle">
+        <item name="android:layout_width">@dimen/day_bar_chip_width</item>
+        <item name="android:layout_weight">@dimen/day_bar_chip_weight</item>
+        <item name="android:layout_height">@dimen/dayChipHeight</item>
+        <item name="android:radius">@dimen/day_bar_chip_radius</item>
+        <item name="android:padding">@dimen/day_bar_chip_padding</item>
+        <item name="android:layout_marginEnd">@dimen/day_bar_chip_marginEnd</item>
+        <item name="android:layout_marginStart">@dimen/day_bar_chip_marginStart</item>
+        <item name="android:lineSpacingExtra">@dimen/day_bar_chip_lineSpacingExtra</item>
+        <item name="android:textColor">@color/day_bar_chip_text_color</item>
+        <item name="textColorSelected">@color/day_bar_chip_text_color_selected</item>
+        <item name="android:buttonStyleToggle">@style/Widget.Button.Toggle</item>
+        <item name="background">@drawable/day_bar_chip_shape</item>
+    </style>
+
+    <style name="Widget.Button.Toggle" parent="android:Widget">
+        <item name="android:background">@drawable/day_bar_chip_shape</item>
+    </style>
+
+</resources>
