@@ -3,6 +3,8 @@
 
 Display weekdays and choose a day using DayBar.
 
+![alt text](https://github.com/5hahryar/DayBar/blob/master/Screenshot.png?raw=true)
+
 ## Installation
 
 1.Add jitpack repository to your project's build.gradle(Project:...)
