@@ -50,4 +50,4 @@ class MainActivity : AppCompatActivity(), DayBar.OnDayChangedListener {
 ### Support
 Reach out to me at shahryar.kh78@gmail.com
 
-Feel free to make any contributations.
+Feel free to make any contributions.
