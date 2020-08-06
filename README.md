@@ -33,11 +33,10 @@ class MainActivity : AppCompatActivity(), DayBar.OnDayChangedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-            val dayBar: DayBar = dayBar
-            dayBar.dayChangedListener = this
-
-        }
+	
+        val dayBar: DayBar = dayBar
+        dayBar.dayChangedListener = this
+    }
 
     override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {
         //Do something
