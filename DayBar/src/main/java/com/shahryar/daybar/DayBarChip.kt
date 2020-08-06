@@ -5,7 +5,7 @@ import android.util.AttributeSet
 
 class DayBarChip(
     context: Context?,
-    val attrs: AttributeSet
+    attrs: AttributeSet
 ) : androidx.appcompat.widget.AppCompatToggleButton(context, attrs) {
 
     /**
