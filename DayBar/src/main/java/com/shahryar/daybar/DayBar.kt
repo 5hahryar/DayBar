@@ -28,9 +28,6 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
         }
 
     var dayChangedListener: OnDayChangedListener? = null
-        set(mListener){
-            field = mListener
-        }
 
     val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
 
@@ -40,6 +37,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
         assignDateToChips(Calendar.getInstance())
         setListeners()
         setAttrs()
+        dayChips[0].performClick()
     }
 
     /**
