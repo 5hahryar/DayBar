@@ -15,9 +15,6 @@ import kotlin.collections.HashMap
 
 class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
-
-    val dayChips: MutableList<DayBarChip>
-
     /**
      * Setting chip's custom date and text value
      */
@@ -26,17 +23,17 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
             field = firstDay
             assignDateToChips(firstDay)
         }
-
+    val dayChips: MutableList<DayBarChip>
     var dayChangedListener: OnDayChangedListener? = null
-
     val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
+    var startWeekOn: Int? = null
 
     init {
         inflate(context, R.layout.day_bar_layout, this)
         dayChips = mutableListOf(chip0, chip1, chip2, chip3, chip4, chip5, chip6)
-        assignDateToChips(Calendar.getInstance())
-        setListeners()
         setAttrs()
+        setListeners()
+        assignDateToChips(Calendar.getInstance())
         dayChips[0].performClick()
     }
 
@@ -44,8 +41,15 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
      * Assign date values to chips
      */
     private fun assignDateToChips(calendar: Calendar) {
+        //Start with a specific day, Monday as default
+        calendar.firstDayOfWeek = startWeekOn!!
+        //Finding the first day of week
+        while (calendar[Calendar.DAY_OF_WEEK] != calendar.firstDayOfWeek) {
+            calendar.add(Calendar.DAY_OF_MONTH, -1)
+        }
+        //Assign date to chips
         for (i in 0..6) {
-            if (i != 0) calendar.add(Calendar.DAY_OF_MONTH, 1)
+            if (i != 0) calendar.add(Calendar.DAY_OF_WEEK, 1)
             val date: HashMap<String, String> = hashMapOf(
                 DayBarChip.DAY to SimpleDateFormat(DayBarChip.DAY)
                     .format(calendar.time).toString(),
@@ -63,9 +67,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     }
 
     private fun setListeners() {
-        /**
-         * Single selection mode
-         */
+        //Making sure only one chip is selected at all times
         for (chip in dayChips) {
             chip.setOnClickListener { view: View? ->
                 val c = view as DayBarChip
@@ -85,13 +87,15 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
      * Setting attributes to both DayBar and DayBarChip
      */
     private fun setAttrs() {
-        /** Typeface for dayBarChip **/
+        //Typeface for darBarChip
         for (chip in dayChips) {
             var fontPath =attributes?.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 chip.typeface = context.resources.getFont(fontPath!!)
             }
         }
+        //Start week on a specific day
+        startWeekOn = attributes?.getInt(R.styleable.DayBar_startWeekOn, Calendar.MONDAY)!!
     }
 
     interface OnDayChangedListener {
