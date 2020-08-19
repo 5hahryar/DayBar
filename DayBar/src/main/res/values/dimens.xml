@@ -9,6 +9,6 @@
     <dimen name="day_bar_chip_padding">0dp</dimen>
     <dimen name="day_bar_chip_marginEnd">2dp</dimen>
     <dimen name="day_bar_chip_marginStart">2dp</dimen>
-    <dimen name="day_bar_chip_lineSpacingExtra">5dp</dimen>
-    <item name="day_bar_chip_weight" type="dimen" format="float">0.9</item>
+    <dimen name="day_bar_chip_lineSpacingExtra">3dp</dimen>
+    <item name="day_bar_chip_weight" type="dimen" format="float">1</item>
 </resources>

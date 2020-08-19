@@ -30,14 +30,18 @@ class DayBarChip(
         }
 
     val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
+    var isFilledWithTasks: Boolean = false
 
     init {
         setAttrs()
     }
 
     private fun setAttrs() {
+        //Assign text color when selected and not selected
         if (isSelected) setTextColor(attributes?.getColor(R.styleable.DayBar_textColorSelected, 0)!!)
         else setTextColor(attributes?.getColor(R.styleable.DayBar_android_textColor, 0)!!)
+        //TODO:Show task indicator when filled with tasks
+
     }
     
 }
