@@ -4,7 +4,6 @@
         <attr name="textColorSelected" format="reference|color"/>
         <attr name="android:textColor"/>
         <attr name="font" format="reference"/>
-        <attr name="startWeekOn" format="integer"/>
         <attr name="android:textSize" format="dimension"/>
     </declare-styleable>
 </resources>

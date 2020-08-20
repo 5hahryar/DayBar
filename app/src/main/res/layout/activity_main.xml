@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:font="@font/googlesans_regular"
-        android:textSize="10sp"/>
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/textView"
@@ -22,5 +22,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"/>
 
+    <Button
+        android:id="@+id/button"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Selected Day"
+        android:onClick="onClick"/>
 
 </LinearLayout>

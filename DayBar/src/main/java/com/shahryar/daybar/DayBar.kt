@@ -18,15 +18,9 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     /**
      * Setting chip's custom date and text value
      */
-    var firstDay: Calendar = Calendar.getInstance()
-        set(firstDay) {
-            field = firstDay
-            assignDateToChips(firstDay)
-        }
-    val dayChips: MutableList<DayBarChip>
+    private val dayChips: MutableList<DayBarChip>
     var dayChangedListener: OnDayChangedListener? = null
-    val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
-    var startWeekOn: Int? = null
+    private val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
 
     init {
         inflate(context, R.layout.day_bar_layout, this)
@@ -41,12 +35,6 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
      * Assign date values to chips
      */
     private fun assignDateToChips(calendar: Calendar) {
-        //Start with a specific day, Monday as default
-        calendar.firstDayOfWeek = startWeekOn!!
-        //Finding the first day of week
-        while (calendar[Calendar.DAY_OF_WEEK] != calendar.firstDayOfWeek) {
-            calendar.add(Calendar.DAY_OF_MONTH, -1)
-        }
         //Assign date to chips
         for (i in 0..6) {
             if (i != 0) calendar.add(Calendar.DAY_OF_WEEK, 1)
@@ -94,10 +82,14 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
                 chip.typeface = context.resources.getFont(fontPath!!)
             }
         }
-        //Start week on a specific day
-        startWeekOn = attributes?.getInt(R.styleable.DayBar_startWeekOn, Calendar.MONDAY)!!
     }
 
+    fun getSelectedDay(): DayBarChip? {
+        for (day in dayChips) {
+            if (day.isChecked) return day
+        }
+        return null
+    }
     interface OnDayChangedListener {
         fun onSelectedDayChanged(date: HashMap<String,String>, chip: DayBarChip)
     }
