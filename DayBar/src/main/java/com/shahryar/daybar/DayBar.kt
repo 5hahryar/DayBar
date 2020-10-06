@@ -20,12 +20,10 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
      */
     private val dayChips: MutableList<DayBarChip>
     var dayChangedListener: OnDayChangedListener? = null
-    private val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
 
     init {
         inflate(context, R.layout.day_bar_layout, this)
         dayChips = mutableListOf(chip0, chip1, chip2, chip3, chip4, chip5, chip6)
-        setAttrs()
         setListeners()
         assignDateToChips(Calendar.getInstance())
         dayChips[0].performClick()
@@ -67,19 +65,6 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
                     }
                 } else c.isChecked = true
                 dayChangedListener?.onSelectedDayChanged(c.date, c)
-            }
-        }
-    }
-
-    /**
-     * Setting attributes to both DayBar and DayBarChip
-     */
-    private fun setAttrs() {
-        //Typeface for darBarChip
-        for (chip in dayChips) {
-            var fontPath =attributes?.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                chip.typeface = context.resources.getFont(fontPath!!)
             }
         }
     }

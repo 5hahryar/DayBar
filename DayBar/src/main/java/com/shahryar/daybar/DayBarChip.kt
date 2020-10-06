@@ -1,6 +1,7 @@
 package com.shahryar.daybar
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 
 class DayBarChip(
@@ -30,7 +31,7 @@ class DayBarChip(
         }
 
     val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
-    var isFilledWithTasks: Boolean = false
+    var fontPath = attributes!!.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
 
     init {
         setAttrs()
@@ -40,6 +41,10 @@ class DayBarChip(
         //Assign text color when selected and not selected
         if (isSelected) setTextColor(attributes?.getColor(R.styleable.DayBar_textColorSelected, 0)!!)
         else setTextColor(attributes?.getColor(R.styleable.DayBar_android_textColor, 0)!!)
+        //Apply font
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            typeface = context.resources.getFont(fontPath)
+        }
         //TODO:Show task indicator when filled with tasks
 
     }
