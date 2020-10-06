@@ -8,7 +8,7 @@ import com.shahryar.daybar.DayBar
 import com.shahryar.daybar.DayBarChip
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), DayBar.OnDayChangedListener {
+class MainActivity : AppCompatActivity() {
 
     var dayBar: DayBar? = null
 
@@ -16,11 +16,12 @@ class MainActivity : AppCompatActivity(), DayBar.OnDayChangedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         dayBar = findViewById(R.id.dayBar)
-        dayBar?.dayChangedListener = this
-    }
 
-    override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {
-        textView.text = "${chip.isChecked}\n${date}"
+        dayBar?.setOnDayChangedListener(object: DayBar.OnDayChangedListener {
+            override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {
+                textView.text = "${chip.isChecked}\n${date}"
+            }
+        })
     }
 
     fun onClick(view: View) {
