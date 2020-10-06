@@ -18,7 +18,7 @@ allprojects {
   ```
 2.Add the dependency in build.gradle(Module:app)
 ```bash
-implementation 'com.github.5hahryar:DayBar:1.0.1'
+implementation 'com.github.5hahryar:DayBar:Tag'
 ```
 
 ## Usage
