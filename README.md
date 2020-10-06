@@ -31,20 +31,11 @@ implementation 'com.github.5hahryar:DayBar:1.0.1'
 ```
 ### In your activity
 ```bash 
-class MainActivity : AppCompatActivity(), DayBar.OnDayChangedListener {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-	
-        val dayBar: DayBar = dayBar
-        dayBar.dayChangedListener = this
-    }
-
-    override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {
-        //Do something
-    }
-
-}
+dayBar.setOnDayChangedListener(object: DayBar.OnDayChangedListener {
+            override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {
+                TODO("Do something")
+            }
+        })
 ```
 ## Customization
 ### Colors
