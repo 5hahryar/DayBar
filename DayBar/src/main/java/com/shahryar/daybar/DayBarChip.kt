@@ -1,12 +1,21 @@
 package com.shahryar.daybar
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.util.AttributeSet
 
 class DayBarChip(
     context: Context?,
     attrs: AttributeSet
 ) : androidx.appcompat.widget.AppCompatToggleButton(context, attrs) {
+
+    constructor(context: Context?,
+                attrs: AttributeSet,
+                hasIndication: Boolean) : this(context, attrs) {
+        this.hasIndication = hasIndication
+    }
 
     /**
      * Using constant values to help maintain consistency
@@ -29,8 +38,14 @@ class DayBarChip(
             textOff = "${date[DAY]}\n${date[DAY_NAME]}"
         }
 
-    val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
-    var isFilledWithTasks: Boolean = false
+    val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)!!
+    val indicatorPaint: Paint = Paint()
+    private var isIndicated: Boolean = false
+    var hasIndication: Boolean = false
+    set(value) {
+        field = value
+        invalidate()
+    }
 
     init {
         setAttrs()
@@ -38,10 +53,22 @@ class DayBarChip(
 
     private fun setAttrs() {
         //Assign text color when selected and not selected
-        if (isSelected) setTextColor(attributes?.getColor(R.styleable.DayBar_textColorSelected, 0)!!)
-        else setTextColor(attributes?.getColor(R.styleable.DayBar_android_textColor, 0)!!)
+        if (isSelected) setTextColor(attributes.getColor(R.styleable.DayBar_textColorSelected, 0)!!)
+        else setTextColor(attributes.getColor(R.styleable.DayBar_android_textColor, 0)!!)
         //TODO:Show task indicator when filled with tasks
 
     }
-    
+
+    override fun onDrawForeground(canvas: Canvas?) {
+        super.onDrawForeground(canvas)
+        if (hasIndication && !isChecked) {
+            indicatorPaint.color = Color.BLUE
+            indicatorPaint.style = Paint.Style.FILL
+            canvas?.drawCircle((width.toDouble()/2.00).toFloat(),height - 15F, 5F, indicatorPaint)
+            isIndicated = true
+        }
+        else isIndicated = false
+    }
+
+    fun IsIndicated(): Boolean {return isIndicated}
 }

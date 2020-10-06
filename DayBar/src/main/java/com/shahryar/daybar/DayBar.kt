@@ -18,7 +18,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     /**
      * Setting chip's custom date and text value
      */
-    private val dayChips: MutableList<DayBarChip>
+    val dayChips: MutableList<DayBarChip>
     var dayChangedListener: OnDayChangedListener? = null
     private val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
 
