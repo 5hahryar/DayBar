@@ -54,6 +54,7 @@ Override colors in colors.xml
     <color name="day_bar_chip_text_color_selected">#FFF</color>
     <color name="day_bar_chip_text_color">#6200EE</color>
     <color name="day_bar_chip_stroke_color">#6200EE</color>
+    <color name="day_bar_chip_indicator_color">#6200EE</color>
 ```
 ### Font
 First copy your .ttf file to font resource directory
