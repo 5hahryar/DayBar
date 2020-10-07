@@ -18,7 +18,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     /**
      * Setting chip's custom date and text value
      */
-    val dayChips: MutableList<DayBarChip>
+    private val dayChips: MutableList<DayBarChip>
     var dayChangedListener: OnDayChangedListener? = null
     private val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
 
@@ -80,6 +80,29 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
             var fontPath =attributes?.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 chip.typeface = context.resources.getFont(fontPath!!)
+            }
+        }
+    }
+
+    /**
+     * Enable indication by passing desired indices
+     * ranging from 0 to 6
+     */
+    fun setIndicationByIndex(list: List<Int>) {
+        for (index in list) {
+            dayChips[index].hasIndication = true
+        }
+    }
+
+    /**
+     * Enable indication by passing desired days
+     * ranging from 1 to 31 depending on time
+     */
+    fun setIndicationByDay(days: List<Int>) {
+        for (day in days) {
+            for (chip in dayChips) {
+                if (chip.date[DayBarChip.DAY]!!.toInt() == day)
+                    chip.hasIndication = true
             }
         }
     }

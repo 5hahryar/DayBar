@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity(), DayBar.OnDayChangedListener {
         setContentView(R.layout.activity_main)
         dayBar = findViewById(R.id.dayBar)
         dayBar?.dayChangedListener = this
+        dayBar?.setIndicationByIndex(listOf(2, 6))
     }
 
     override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {

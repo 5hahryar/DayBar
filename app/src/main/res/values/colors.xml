@@ -8,4 +8,6 @@
 <!--    <color name="day_bar_chip_text_color_selected">#fff</color>-->
 <!--    <color name="day_bar_chip_text_color">#809591</color>-->
     <color name="day_bar_chip_stroke_color">@android:color/transparent</color>
+<!--    <color name="day_bar_chip_indicator_color">@color/colorAccent</color>-->
+
 </resources>

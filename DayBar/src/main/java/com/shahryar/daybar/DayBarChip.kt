@@ -11,12 +11,6 @@ class DayBarChip(
     attrs: AttributeSet
 ) : androidx.appcompat.widget.AppCompatToggleButton(context, attrs) {
 
-    constructor(context: Context?,
-                attrs: AttributeSet,
-                hasIndication: Boolean) : this(context, attrs) {
-        this.hasIndication = hasIndication
-    }
-
     /**
      * Using constant values to help maintain consistency
      */
@@ -38,8 +32,8 @@ class DayBarChip(
             textOff = "${date[DAY]}\n${date[DAY_NAME]}"
         }
 
-    val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)!!
-    val indicatorPaint: Paint = Paint()
+    private val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)!!
+    private val indicatorPaint: Paint = Paint()
     private var isIndicated: Boolean = false
     var hasIndication: Boolean = false
     set(value) {
@@ -53,16 +47,15 @@ class DayBarChip(
 
     private fun setAttrs() {
         //Assign text color when selected and not selected
-        if (isSelected) setTextColor(attributes.getColor(R.styleable.DayBar_textColorSelected, 0)!!)
-        else setTextColor(attributes.getColor(R.styleable.DayBar_android_textColor, 0)!!)
-        //TODO:Show task indicator when filled with tasks
-
+        if (isSelected) setTextColor(attributes.getColor(R.styleable.DayBar_textColorSelected, 0))
+        else setTextColor(attributes.getColor(R.styleable.DayBar_android_textColor, 0))
     }
 
     override fun onDrawForeground(canvas: Canvas?) {
         super.onDrawForeground(canvas)
+        //Show indicator when chip is not checked
         if (hasIndication && !isChecked) {
-            indicatorPaint.color = Color.BLUE
+            indicatorPaint.color = context.resources.getColor(R.color.day_bar_chip_indicator_color)
             indicatorPaint.style = Paint.Style.FILL
             canvas?.drawCircle((width.toDouble()/2.00).toFloat(),height - 15F, 5F, indicatorPaint)
             isIndicated = true
@@ -70,5 +63,8 @@ class DayBarChip(
         else isIndicated = false
     }
 
+    /**
+     * Returns the state of indication
+     */
     fun IsIndicated(): Boolean {return isIndicated}
 }
