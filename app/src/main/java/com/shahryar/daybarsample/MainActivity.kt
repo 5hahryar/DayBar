@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         dayBar = findViewById(R.id.dayBar)
-
+        dayBar?.setIndicationByIndex(listOf(2, 6))
         dayBar?.setOnDayChangedListener(object: DayBar.OnDayChangedListener {
             override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {
                 textView.text = "${chip.isChecked}\n${date}"
