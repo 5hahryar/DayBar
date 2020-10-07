@@ -84,6 +84,29 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
         }
     }
 
+    /**
+     * Enable indication by passing desired indices
+     * ranging from 0 to 6
+     */
+    fun setIndicationByIndex(list: List<Int>) {
+        for (index in list) {
+            dayChips[index].hasIndication = true
+        }
+    }
+
+    /**
+     * Enable indication by passing desired days
+     * ranging from 1 to 31 depending on time
+     */
+    fun setIndicationByDay(days: List<Int>) {
+        for (day in days) {
+            for (chip in dayChips) {
+                if (chip.date[DayBarChip.DAY]!!.toInt() == day)
+                    chip.hasIndication = true
+            }
+        }
+    }
+
     fun getSelectedDay(): DayBarChip? {
         for (day in dayChips) {
             if (day.isChecked) return day
