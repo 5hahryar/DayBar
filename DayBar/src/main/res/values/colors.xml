@@ -4,4 +4,5 @@
     <color name="day_bar_chip_text_color_selected">@android:color/white</color>
     <color name="day_bar_chip_text_color">#6200EE</color>
     <color name="day_bar_chip_stroke_color">#6200EE</color>
+    <color name="day_bar_chip_indicator_color">#673AB7</color>
 </resources>

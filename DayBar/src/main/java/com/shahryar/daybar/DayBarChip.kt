@@ -1,6 +1,9 @@
 package com.shahryar.daybar
 
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.util.AttributeSet
 
 class DayBarChip(
@@ -29,8 +32,14 @@ class DayBarChip(
             textOff = "${date[DAY]}\n${date[DAY_NAME]}"
         }
 
-    val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)
-    var isFilledWithTasks: Boolean = false
+    private val attributes = context?.obtainStyledAttributes(attrs, R.styleable.DayBar)!!
+    private val indicatorPaint: Paint = Paint()
+    private var isIndicated: Boolean = false
+    var hasIndication: Boolean = false
+    set(value) {
+        field = value
+        invalidate()
+    }
 
     init {
         setAttrs()
@@ -38,10 +47,24 @@ class DayBarChip(
 
     private fun setAttrs() {
         //Assign text color when selected and not selected
-        if (isSelected) setTextColor(attributes?.getColor(R.styleable.DayBar_textColorSelected, 0)!!)
-        else setTextColor(attributes?.getColor(R.styleable.DayBar_android_textColor, 0)!!)
-        //TODO:Show task indicator when filled with tasks
-
+        if (isSelected) setTextColor(attributes.getColor(R.styleable.DayBar_textColorSelected, 0))
+        else setTextColor(attributes.getColor(R.styleable.DayBar_android_textColor, 0))
     }
-    
+
+    override fun onDrawForeground(canvas: Canvas?) {
+        super.onDrawForeground(canvas)
+        //Show indicator when chip is not checked
+        if (hasIndication && !isChecked) {
+            indicatorPaint.color = context.resources.getColor(R.color.day_bar_chip_indicator_color)
+            indicatorPaint.style = Paint.Style.FILL
+            canvas?.drawCircle((width.toDouble()/2.00).toFloat(),height - 15F, 5F, indicatorPaint)
+            isIndicated = true
+        }
+        else isIndicated = false
+    }
+
+    /**
+     * Returns the state of indication
+     */
+    fun IsIndicated(): Boolean {return isIndicated}
 }
