@@ -13,7 +13,7 @@
         android:id="@+id/dayBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:font="@font/googlesans_regular"
+        app:font="@font/montserrat_regular"
         android:textSize="10sp" />
 
     <TextView
