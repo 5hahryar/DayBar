@@ -38,6 +38,15 @@ dayBar.setOnDayChangedListener(object: DayBar.OnDayChangedListener {
         })
 ```
 ## Customization
+### Indication
+Indicate chips by index
+```bash
+dayBar.setIndicationByIndex(listOf(2, 6))
+```
+Indicate chips by day
+```bash
+dayBar.setIndicationByDay(listOf(31, 3))
+```
 ### Colors
 Override colors in colors.xml
 ```bash
