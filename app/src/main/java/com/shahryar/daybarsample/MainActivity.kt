@@ -18,8 +18,12 @@ class MainActivity : AppCompatActivity() {
         dayBar = findViewById(R.id.dayBar)
         dayBar?.setIndicationByIndex(listOf(2, 6))
         dayBar?.setOnDayChangedListener(object: DayBar.OnDayChangedListener {
-            override fun onSelectedDayChanged(date: HashMap<String, String>, chip: DayBarChip) {
-                textView.text = "${chip.isChecked}\n${date}"
+            override fun onSelectedDayChanged(
+                index: Int,
+                date: HashMap<String, String>,
+                chip: DayBarChip
+            ) {
+                textView.text = "${chip.isChecked}\n${date} \t Index: $index"
             }
         })
     }

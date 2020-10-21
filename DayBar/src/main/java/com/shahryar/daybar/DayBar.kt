@@ -1,13 +1,10 @@
 package com.shahryar.daybar
 
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.ToggleButton
-import androidx.core.content.ContextCompat.getColor
 import kotlinx.android.synthetic.main.day_bar_layout.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -66,7 +63,12 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
                         else dayChips[i].setTextColor(resources.getColor(R.color.day_bar_chip_text_color))
                     }
                 } else c.isChecked = true
-                dayChangedListener?.onSelectedDayChanged(c.date, c)
+
+                var index = 0
+                for (i in 0..6) {
+                    if (dayChips[i].isChecked) index = i
+                }
+                dayChangedListener?.onSelectedDayChanged(index, c.date, c)
             }
         }
     }
@@ -119,7 +121,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     }
 
     interface OnDayChangedListener {
-        fun onSelectedDayChanged(date: HashMap<String,String>, chip: DayBarChip)
+        fun onSelectedDayChanged(index: Int, date: HashMap<String, String>, chip: DayBarChip)
     }
 
 }
