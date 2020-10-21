@@ -59,14 +59,18 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
         for (chip in dayChips) {
             chip.setOnClickListener { view: View? ->
                 val c = view as DayBarChip
+                var index:Int = 0
                 if (c.isChecked) {
                     for (i in 0..6) {
-                        dayChips[i].isChecked = dayChips[i].id == c.id
+                        if (dayChips[i].id == c.id) {
+                            dayChips[i].isChecked = true
+                            index = i
+                        }
                         if (dayChips[i].isChecked) c.setTextColor(resources.getColor(R.color.day_bar_chip_text_color_selected))
                         else dayChips[i].setTextColor(resources.getColor(R.color.day_bar_chip_text_color))
                     }
                 } else c.isChecked = true
-                dayChangedListener?.onSelectedDayChanged(c.date, c)
+                dayChangedListener?.onSelectedDayChanged(index, c.date, c)
             }
         }
     }
@@ -119,7 +123,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     }
 
     interface OnDayChangedListener {
-        fun onSelectedDayChanged(date: HashMap<String,String>, chip: DayBarChip)
+        fun onSelectedDayChanged(index: Int, date: HashMap<String,String>, chip: DayBarChip)
     }
 
 }
