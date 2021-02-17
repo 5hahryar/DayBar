@@ -103,13 +103,11 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
      * ranging from 1 to 31 depending on time
      */
     fun setIndicationByDay(days: List<Int>) {
+        for (chip in dayChips) chip.hasIndication = false
         for (chip in dayChips) {
             for (day in days) {
                 if (chip.date[DayBarChip.DAY]!!.toInt() == day) {
                     chip.hasIndication = true
-                    break
-                } else {
-                    chip.hasIndication = false
                     break
                 }
             }
