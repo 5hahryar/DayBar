@@ -81,7 +81,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     private fun setAttrs() {
         //Typeface for darBarChip
         for (chip in dayChips) {
-            val fontPath =attributes?.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
+            val fontPath = attributes?.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 chip.typeface = context.resources.getFont(fontPath!!)
             }
@@ -103,13 +103,12 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
      * ranging from 1 to 31 depending on time
      */
     fun setIndicationByDay(days: List<Int>) {
-        for (day in days) {
-            for (chip in dayChips) {
+        for (chip in dayChips) {
+            for (day in days) {
                 if (chip.date[DayBarChip.DAY]!!.toInt() == day) {
                     chip.hasIndication = true
                     break
-                }
-                else {
+                } else {
                     chip.hasIndication = false
                     break
                 }
