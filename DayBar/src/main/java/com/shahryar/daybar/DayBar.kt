@@ -1,5 +1,6 @@
 package com.shahryar.daybar
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
@@ -31,6 +32,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     /**
      * Assign date values to chips
      */
+    @SuppressLint("SimpleDateFormat")
     private fun assignDateToChips(calendar: Calendar) {
         //Assign date to chips
         for (i in 0..6) {
@@ -79,7 +81,7 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     private fun setAttrs() {
         //Typeface for darBarChip
         for (chip in dayChips) {
-            var fontPath =attributes?.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
+            val fontPath =attributes?.getResourceId(R.styleable.DayBar_font, R.font.roboto_regular)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 chip.typeface = context.resources.getFont(fontPath!!)
             }
@@ -103,8 +105,14 @@ class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, att
     fun setIndicationByDay(days: List<Int>) {
         for (day in days) {
             for (chip in dayChips) {
-                if (chip.date[DayBarChip.DAY]!!.toInt() == day)
+                if (chip.date[DayBarChip.DAY]!!.toInt() == day) {
                     chip.hasIndication = true
+                    break
+                }
+                else {
+                    chip.hasIndication = false
+                    break
+                }
             }
         }
     }
