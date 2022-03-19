@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class DayBar(context: Context?, attrs: AttributeSet) : LinearLayout(context, attrs) {
+class DayBar @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
 
     /**
      * Setting chip's custom date and text value
